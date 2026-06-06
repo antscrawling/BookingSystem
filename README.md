@@ -88,6 +88,32 @@ Windows PowerShell activation:
 .\.venv\Scripts\Activate.ps1
 ```
 
+### 5) Publish To PyPI With GitHub Actions (Trusted Publishing)
+
+This repository includes a workflow at `.github/workflows/publish.yml` that:
+
+- Builds package files with `uv build`
+- Publishes with `uv publish --trusted-publishing always`
+
+One-time PyPI setup:
+
+1. Create your project on PyPI (same package name as `pyproject.toml`).
+2. In PyPI project settings, add a Trusted Publisher:
+	- Owner: your GitHub username or org
+	- Repository: `BookingSystem`
+	- Workflow: `publish.yml`
+	- Environment: leave empty (unless you add one in GitHub)
+
+How to publish:
+
+1. Push your latest code to GitHub.
+2. Create a GitHub Release (for example `v1.0.1`).
+3. The workflow runs automatically and publishes to PyPI.
+
+Manual run option:
+
+- In GitHub Actions, open `Publish Python Package` and run via `workflow_dispatch`.
+
 ## Run
 
 ```bash
