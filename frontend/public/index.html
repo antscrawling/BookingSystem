@@ -28,6 +28,80 @@
         </div>
       </section>
 
+      <section class="card reveal">
+        <div class="section-head">
+          <h2>Authentication</h2>
+          <button id="logoutBtn" class="ghost" hidden>Logout</button>
+        </div>
+        <p id="authMessage" class="message"></p>
+        <p id="sessionInfo" class="message"></p>
+        <div class="auth-grid">
+          <form id="registerForm" class="mini-form">
+            <h3>Register</h3>
+            <label>
+              Full Name
+              <input id="registerName" required minlength="1" maxlength="120" />
+            </label>
+            <label>
+              Email
+              <input id="registerEmail" type="email" required />
+            </label>
+            <label>
+              Password
+              <input id="registerPassword" type="password" required minlength="8" />
+            </label>
+            <button type="submit">Create Account</button>
+          </form>
+
+          <form id="loginForm" class="mini-form">
+            <h3>Login</h3>
+            <label>
+              Email
+              <input id="loginEmail" type="email" required />
+            </label>
+            <label>
+              Password
+              <input id="loginPassword" type="password" required minlength="8" />
+            </label>
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="card reveal" id="paymentCard">
+        <h2>Credit Card Payment</h2>
+        <form id="paymentForm" class="form-grid">
+          <label>
+            Booking ID
+            <input id="payBookingId" type="number" min="1" required />
+          </label>
+          <label>
+            Cardholder Name
+            <input id="payCardholder" required />
+          </label>
+          <label>
+            Card Number
+            <input id="payCardNumber" required placeholder="4242424242424242" />
+          </label>
+          <label>
+            Expiry Month
+            <input id="payExpMonth" type="number" min="1" max="12" required />
+          </label>
+          <label>
+            Expiry Year
+            <input id="payExpYear" type="number" min="2024" max="2100" required />
+          </label>
+          <label>
+            CVV
+            <input id="payCvv" type="password" required minlength="3" maxlength="4" />
+          </label>
+          <div class="actions">
+            <button type="submit">Pay Booking</button>
+          </div>
+        </form>
+        <p id="paymentMessage" class="message"></p>
+      </section>
+
       <section class="card reveal delay-1">
         <h2 id="formTitle">Create Booking</h2>
         <form id="bookingForm" class="form-grid">
@@ -68,6 +142,52 @@
         <p id="formMessage" class="message"></p>
       </section>
 
+      <section class="card reveal delay-2 hidden" id="adminCard">
+        <h2>Admin Settings</h2>
+        <form id="adminSettingsForm" class="form-grid">
+          <label>
+            Price Per Hour
+            <input id="adminPrice" type="number" min="1" required />
+          </label>
+          <label>
+            Opening Hour
+            <input id="adminOpen" type="number" min="0" max="23" required />
+          </label>
+          <label>
+            Closing Hour
+            <input id="adminClose" type="number" min="1" max="24" required />
+          </label>
+          <label>
+            Total Courts
+            <input id="adminCourts" type="number" min="1" required />
+          </label>
+          <div class="actions">
+            <button type="submit">Save Settings</button>
+          </div>
+        </form>
+        <p id="adminMessage" class="message"></p>
+
+        <div class="section-head spaced-top">
+          <h2>Customer Management</h2>
+          <button id="adminCustomersRefreshBtn" type="button" class="ghost">Refresh Customers</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Created At</th>
+              </tr>
+            </thead>
+            <tbody id="adminCustomersBody"></tbody>
+          </table>
+        </div>
+        <p id="adminCustomersMessage" class="message"></p>
+      </section>
+
       <section class="card reveal delay-2">
         <div class="section-head">
           <h2>Bookings</h2>
@@ -98,6 +218,8 @@
                 <th>Time</th>
                 <th>Duration</th>
                 <th>Cost</th>
+                <th>Status</th>
+                <th>Pay Due</th>
                 <th>Actions</th>
               </tr>
             </thead>

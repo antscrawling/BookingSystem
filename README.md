@@ -126,13 +126,28 @@ Swagger docs: `http://127.0.0.1:8000/docs`
 ## API Endpoints
 
 - `GET /` - service info and booking rules
+- `POST /auth/register` - register a customer account
+- `POST /auth/login` - login and get bearer token
+- `GET /auth/me` - current authenticated user
 - `GET /admin/settings` - read current runtime settings
 - `PUT /admin/settings` - update price, opening/closing hours, and court count
+- `GET /admin/customers` - list all customers (admin only)
 - `POST /bookings` - create booking
 - `GET /bookings` - list all bookings
 - `GET /bookings/{booking_id}` - get booking by id
 - `PUT /bookings/{booking_id}` - update booking
+- `POST /bookings/{booking_id}/pay` - pay booking with credit card
+- `POST /bookings/{booking_id}/refund` - refund a paid booking
 - `DELETE /bookings/{booking_id}` - delete booking
+
+All booking endpoints now require `Authorization: Bearer <token>`.
+
+### Default Admin Account (seeded automatically)
+
+- Email: `admin@bookingsystem.local`
+- Password: `Admin123!`
+
+Change this account password immediately after first login in production.
 
 You can filter list endpoint with query params:
 
@@ -152,6 +167,30 @@ You can filter list endpoint with query params:
 ```
 
 Expected computed amount: `2 * 12 = 24`
+
+## Credit Card Payment Flow
+
+1. Customer registers and logs in.
+2. Customer creates booking. New booking is created as `pending_payment`.
+3. Booking must be paid within `payment_window_minutes` (from `GET /`).
+4. Payment success sets booking to `paid`.
+5. Payment failure auto-cancels booking with `cancelled_payment_failed`.
+6. Expired payment window auto-cancels booking with `cancelled_payment_timeout`.
+7. Refund endpoint moves paid booking to `refunded`.
+
+Payment request body:
+
+```json
+{
+	"card_holder_name": "Jose Ibay",
+	"card_number": "4242424242424242",
+	"exp_month": 12,
+	"exp_year": 2030,
+	"cvv": "123"
+}
+```
+
+Note: this project uses a simulated payment gateway interface for development/testing. It stores only masked card data (`last4`) in payment logs.
 
 ## Update Price/Hours/Courts At Runtime
 
