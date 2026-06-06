@@ -1,11 +1,17 @@
 [project]
 name = "bookingsystem"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0"
+description = "Badminton Court Booking System"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+	{ name = "Jose Ibay" },
+]
 dependencies = [
 	"fastapi>=0.115.0",
 	"sqlalchemy>=2.0.0",
 	"uvicorn>=0.30.0",
 ]
+
+[tool.bookingsystem]
+date_created = "2026-06-07"

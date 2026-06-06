@@ -65,7 +65,7 @@ Create an empty repository on GitHub, then run:
 
 ```bash
 git branch -M main
-git remote add origin https://github.com/<your-user>/<your-repo>.git
+git remote add origin https://github.com/antscrawling/BookingSystem.git
 git push -u origin main
 ```
 
