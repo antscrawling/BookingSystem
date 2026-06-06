@@ -74,7 +74,7 @@ git push -u origin main
 Clone then run:
 
 ```bash
-git clone https://github.com/<your-user>/<your-repo>.git
+git clone https://github.com/antscrawling/BookingSystem
 cd <your-repo>
 python -m venv .venv
 source .venv/bin/activate
