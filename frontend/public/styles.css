@@ -1,0 +1,213 @@
+:root {
+  --bg-1: #f2efe4;
+  --bg-2: #dce5d8;
+  --card: rgba(255, 255, 255, 0.86);
+  --ink: #122226;
+  --accent: #bd4b2a;
+  --accent-soft: #f0b296;
+  --line: #1f363b22;
+  --ok: #0a7d44;
+  --warn: #af2d12;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 0% 0%, #ffffff95 0%, transparent 34%),
+    radial-gradient(circle at 100% 100%, #ffffff80 0%, transparent 40%),
+    linear-gradient(140deg, var(--bg-1), var(--bg-2));
+  min-height: 100vh;
+}
+
+.layout {
+  width: min(1100px, 92vw);
+  margin: 2.2rem auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1.1rem;
+  background: var(--card);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 14px 40px #0a1a1f20;
+}
+
+.hero h1 {
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.7rem, 4vw, 3rem);
+  margin: 0.2rem 0 0.8rem;
+  letter-spacing: 0.01em;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 0.78;
+}
+
+h2 {
+  margin: 0 0 0.9rem;
+  font-family: "Fraunces", serif;
+}
+
+.api-config {
+  margin-top: 0.8rem;
+  width: min(420px, 100%);
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input {
+  border: 1px solid var(--line);
+  background: #ffffffd9;
+  border-radius: 12px;
+  padding: 0.58rem 0.7rem;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cost {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-weight: 700;
+}
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.62rem 1rem;
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button.ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.filters {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: end;
+  margin-bottom: 0.8rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  padding: 0.62rem 0.5rem;
+}
+
+th {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.message {
+  min-height: 1.3rem;
+  font-size: 0.92rem;
+}
+
+.message.ok {
+  color: var(--ok);
+}
+
+.message.error {
+  color: var(--warn);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: rise 560ms ease forwards;
+}
+
+.reveal.delay-1 {
+  animation-delay: 120ms;
+}
+
+.reveal.delay-2 {
+  animation-delay: 220ms;
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 840px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}

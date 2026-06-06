@@ -1,0 +1,26 @@
+
+To run the backend server:
+uvicorn src.main:app --reload
+
+to access the API Manually 
+http://127.0.0.1:8000/docs
+
+
+to run the front end server:
+
+cd /Users/joseibay/Documents/BookingSystem/frontend
+npm start
+Then open http://127.0.0.1:3000.
+
+
+source .venv/bin/activate
+uvicorn src.main:app --reload
+
+cd frontend
+npm start
+
+http://127.0.0.1:3000
+
+--
+node -v
+npm -v

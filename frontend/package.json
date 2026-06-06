@@ -1,0 +1,10 @@
+{
+  "name": "booking-frontend",
+  "version": "1.0.0",
+  "description": "Node.js frontend for badminton booking system",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  }
+}

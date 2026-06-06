@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Badminton Court Booking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="layout">
+      <section class="hero card reveal">
+        <p class="eyebrow">City Sports Center</p>
+        <h1>Badminton Court Reservations</h1>
+        <p>
+          Book by hourly slots at <strong id="rulePrice">$12/hour</strong>. Open from
+          <strong id="ruleOpen">08:00</strong> to <strong id="ruleClose">22:00</strong>, with
+          <strong id="ruleCourts">10 courts</strong> available.
+        </p>
+        <div class="api-config">
+          <label for="apiBase">FastAPI URL</label>
+          <input id="apiBase" type="url" value="http://127.0.0.1:8000" />
+        </div>
+      </section>
+
+      <section class="card reveal delay-1">
+        <h2 id="formTitle">Create Booking</h2>
+        <form id="bookingForm" class="form-grid">
+          <label>
+            Customer Name
+            <input id="customerName" required minlength="1" maxlength="120" />
+          </label>
+
+          <label>
+            Court Number
+            <input id="courtNumber" type="number" min="1" max="10" required />
+          </label>
+
+          <label>
+            Booking Date
+            <input id="bookingDate" type="date" required />
+          </label>
+
+          <label>
+            Start Hour
+            <input id="startHour" type="number" min="8" max="21" required />
+          </label>
+
+          <label>
+            Duration (Hours)
+            <input id="durationHours" type="number" min="1" max="14" required />
+          </label>
+
+          <p class="cost" id="costPreview">Estimated Cost: $0</p>
+
+          <div class="actions">
+            <button type="submit" id="saveBtn">Save Booking</button>
+            <button type="button" class="ghost" id="cancelEditBtn" hidden>
+              Cancel Edit
+            </button>
+          </div>
+        </form>
+        <p id="formMessage" class="message"></p>
+      </section>
+
+      <section class="card reveal delay-2">
+        <div class="section-head">
+          <h2>Bookings</h2>
+          <button id="refreshBtn" class="ghost">Refresh</button>
+        </div>
+
+        <div class="filters">
+          <label>
+            Filter by Date
+            <input id="filterDate" type="date" />
+          </label>
+          <label>
+            Filter by Court
+            <input id="filterCourt" type="number" min="1" max="10" />
+          </label>
+          <button id="applyFiltersBtn" class="ghost">Apply Filters</button>
+          <button id="clearFiltersBtn" class="ghost">Clear Filters</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Court</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th>Cost</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="bookingsBody"></tbody>
+          </table>
+        </div>
+        <p id="listMessage" class="message"></p>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
